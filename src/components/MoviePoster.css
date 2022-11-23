@@ -1,0 +1,20 @@
+.poster_image {
+    width: 200px;
+    height: 300px;
+}
+
+.movie_name {
+    padding: 0px;
+    margin: 0;
+    width: 200px;
+}
+
+@media screen and (max-width: 720px) {
+    .poster_image {
+        width: 140px;
+        height: 210px;
+    }
+    .movie_name {
+        width: 140px;
+    }
+}
