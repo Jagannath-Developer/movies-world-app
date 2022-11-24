@@ -3,18 +3,18 @@
     height: 300px;
 }
 
-.movie_name {
+.cast_name {
     padding: 0px;
     margin: 0;
-    width: 200px;
+    width: 150px;
 }
 
 @media screen and (max-width: 720px) {
     .poster_image {
-        width: 140px;
-        height: 210px;
+        width: 120px;
+        height: 180px;
     }
-    .movie_name {
+    .cast_name {
         width: 140px;
     }
     .nav_link {

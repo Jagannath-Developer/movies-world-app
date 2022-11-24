@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import './Navbar.css';
 
 export default function Navbar() {
+    const [search,setSearch]=useState("0");
+    const handleChange=(e)=>{
+        setSearch(e.target.value);
+    }
     return (
         <div>
             <nav className="navbar navbar-expand-lg nav_bar">
@@ -24,8 +28,9 @@ export default function Navbar() {
                             </li>
                         </ul>
                         <form className="d-flex" role="search">
-                            <input className="form-control me-2" type="search" placeholder="Movie Name" aria-label="Search" />
-                            <button className="btn btn-secondary" type="submit">Search</button>
+                            <input className="form-control me-2" type="search" placeholder="Movie Name" aria-label="Search" onChange={handleChange} />
+                            <NavLink className="btn btn-secondary" to={`search/${search}`}>Search</NavLink>
+                            {/* <button className="btn btn-secondary" type="submit"></button> */}
                         </form>
                     </div>
                 </div>

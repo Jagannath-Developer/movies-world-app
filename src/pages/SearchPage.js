@@ -1,19 +1,21 @@
-import { Pagination } from '@mui/material';
+import { Pagination } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import MoviePoster from '../components/MoviePoster';
+import { useParams } from 'react-router-dom';
+import MoviePoster from '../components/MoviePoster'
 
-export default function TopRate() {
+export default function SearchPage() {
+    const movie_name=useParams();
+    console.log(movie_name.id);
     const Api_key = "c45a857c193f6302f2b5061c3b85e743";
   const [list, setList] = useState([]);
   const [pages, setPages] = useState(1);
   const [pageNumber, setPageNumber] = useState(1);
-  const URL = `https://api.themoviedb.org/3/movie/top_rated?api_key=${Api_key}&language=en-US&page=${pageNumber}`;
-
+  const URL = `https://api.themoviedb.org/3/search/movie?api_key=${Api_key}&language=en-US&query=${movie_name.id}&page=${pageNumber}`;
   useEffect(() => {
     loadingURL();
   }, [])
   const fetchUrl = async (value) => {
-    const URL_PAGE = `https://api.themoviedb.org/3/movie/top_rated?api_key=${Api_key}&language=en-US&page=${value}`;
+    const URL_PAGE = `https://api.themoviedb.org/3/search/movie?api_key=${Api_key}&language=en-US&query=${movie_name.id}&page=${value}`;
     const res = await fetch(URL_PAGE);
     const dataList = await res.json();
     return dataList;
@@ -28,17 +30,18 @@ export default function TopRate() {
     const updateData= await fetchUrl(pageNumber);
     setList(updateData.results);
   }
+
   return (
     <div style={{ background: "#212F3C" }}>
       <div className='container'>
         <div className='p-2'>
-          <h3 className='text-light'>TopRate</h3>
+          <h3 className='text-light'>Search Result</h3>
           <hr className='text-light' />
         </div>
         <div className='d-flex justify-content-center flex-wrap'>
           {
             list.map((x, i) => (
-              <MoviePoster key={i} id={x.id} title={x.title} vote_average={x.vote_average} image={x.poster_path} />
+              <MoviePoster key={i} id={x.id} title={x.title} vote_average={x.vote_average} image={x.poster_path}  />
             ))
           }
         </div>
